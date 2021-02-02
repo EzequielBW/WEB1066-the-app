@@ -1,7 +1,4 @@
 language: java
-jdk:
-  - oraclejdk8
-  - oraclejdk9
 dist: trusty
 before_install:
  - chmod +x gradlew
@@ -11,18 +8,46 @@ jobs:
  include:
    - env: COVERAGE=0.5
      script: ./gradlew -p ./monolithic/ui check
+     jdk: oraclejdk8
    - env: COVERAGE=0.5
      script: ./gradlew -p ./monolithic/service/cart check
+     jdk: oraclejdk8
    - env: COVERAGE=0.5
      script: ./gradlew -p ./monolithic/service/user check
+     jdk: oraclejdk8
    - env: COVERAGE=0.2
      script: ./gradlew -p ./monolithic/repository/order check
+     jdk: oraclejdk8
    - env: COVERAGE=0.5
      script: ./gradlew -p ./monolithic/repository/cart check
+     jdk: oraclejdk8
    - env: COVERAGE=0.5
      script: ./gradlew -p ./monolithic/repository/product check
+     jdk: oraclejdk8
    - env: COVERAGE=0.2
      script: ./gradlew -p ./monolithic/repository/user check
+     jdk: oraclejdk8
+   - env: COVERAGE=0.5
+     script: ./gradlew -p ./monolithic/ui check
+     jdk: oraclejdk9
+   - env: COVERAGE=0.5
+     script: ./gradlew -p ./monolithic/service/cart check
+     jdk: oraclejdk9
+   - env: COVERAGE=0.5
+     script: ./gradlew -p ./monolithic/service/user check
+     jdk: oraclejdk9
+   - env: COVERAGE=0.2
+     script: ./gradlew -p ./monolithic/repository/order check
+     jdk: oraclejdk9
+   - env: COVERAGE=0.5
+     script: ./gradlew -p ./monolithic/repository/cart check
+     jdk: oraclejdk9
+   - env: COVERAGE=0.5
+     script: ./gradlew -p ./monolithic/repository/product check
+     jdk: oraclejdk9
+   - env: COVERAGE=0.2
+     script: ./gradlew -p ./monolithic/repository/user check
+     jdk: oraclejdk9
 deploy:
   provider: script
   script: echo "WIP"
