@@ -1,53 +1,64 @@
+sudo: require
+services:
+  - docker
 language: java
 dist: trusty
+env:
+  global:
+    - secure: MvmvDY/e2TPsDdf/mq0vCxP5fjklthmE6Hjf1uQfS//tx9H+4byH9xJWuIbaY63MimquVaoDat+zAWcE4xpAkCOT9/JU4+GYMwW0lAJ3wOs4cdSMLGXwAXx/SWH84zecIrZChtdeNSbDyNVBmcMGX6eaN9ckgdT3D3FTt7IVE5sWLb8hYPb/6Vtd6GTt8qxLuIG6pPHBKc48AZtpmMb15QA4AGY5C4lTGJZgVbBiiAGZnTA9PMMSqRaFM6lZFLtp3MOXuRHyhi2iDR5H+GoPkRTrTSdjZvq5viqgMSI2jgH5eRAoD+AqHf+t0MxBWqElp2+f5VMX6soOYEHfM08SxBuLn/6oHpvsAQ5GZNgT4+dEVo190nmizFMNl9Ej34vuGa9twBFjnodDCAgkb0DJklh8uULwMxHwy8MocMx6AtTUwizCNgMMJrKdf1VsfSaBX26zduujzXgMxvhhJrRzrBUmWOUAvB1hW8SqR0I81mntwBt44y4mZzi0u2/wcrZlTl1ehuefE590SWm0ubEDZnH1sGIJwc19N/QcEGcL4A9EpeLJKg2koSBJShWGaLF3PUULo9rj6ZpjpSmnLBMacYMlp5Lu9e24rsUeJv3e+pMIO8vv87Wu8DMb1IMCha4VGQ/IZ+7+HxxFHERmmlgG6Rahqm/+SssSMdLLLtOWV+c=
+
 before_install:
- - chmod +x gradlew
+- chmod +x gradlew
 before_script:
- - ./gradlew test
+- "./gradlew test"
+
 jobs:
- include:
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/ui check
-     jdk: oraclejdk8
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/service/cart check
-     jdk: oraclejdk8
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/service/user check
-     jdk: oraclejdk8
-   - env: COVERAGE=0.2
-     script: ./gradlew -p ./monolithic/repository/order check
-     jdk: oraclejdk8
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/repository/cart check
-     jdk: oraclejdk8
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/repository/product check
-     jdk: oraclejdk8
-   - env: COVERAGE=0.2
-     script: ./gradlew -p ./monolithic/repository/user check
-     jdk: oraclejdk8
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/ui check
-     jdk: oraclejdk9
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/service/cart check
-     jdk: oraclejdk9
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/service/user check
-     jdk: oraclejdk9
-   - env: COVERAGE=0.2
-     script: ./gradlew -p ./monolithic/repository/order check
-     jdk: oraclejdk9
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/repository/cart check
-     jdk: oraclejdk9
-   - env: COVERAGE=0.5
-     script: ./gradlew -p ./monolithic/repository/product check
-     jdk: oraclejdk9
-   - env: COVERAGE=0.2
-     script: ./gradlew -p ./monolithic/repository/user check
-     jdk: oraclejdk9
+  include:
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/ui check"
+    jdk: oraclejdk8
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/service/cart check"
+    jdk: oraclejdk8
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/service/user check"
+    jdk: oraclejdk8
+  - env: COVERAGE=0.2
+    script: "./gradlew -p ./monolithic/repository/order check"
+    jdk: oraclejdk8
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/repository/cart check"
+    jdk: oraclejdk8
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/repository/product check"
+    jdk: oraclejdk8
+  - env: COVERAGE=0.2
+    script: "./gradlew -p ./monolithic/repository/user check"
+    jdk: oraclejdk8
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/ui check"
+    jdk: oraclejdk9
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/service/cart check"
+    jdk: oraclejdk9
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/service/user check"
+    jdk: oraclejdk9
+  - env: COVERAGE=0.2
+    script: "./gradlew -p ./monolithic/repository/order check"
+    jdk: oraclejdk9
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/repository/cart check"
+    jdk: oraclejdk9
+  - env: COVERAGE=0.5
+    script: "./gradlew -p ./monolithic/repository/product check"
+    jdk: oraclejdk9
+  - env: COVERAGE=0.2
+    script: "./gradlew -p ./monolithic/repository/user check"
+    jdk: oraclejdk9
+
 deploy:
   provider: script
-  script: echo "WIP"
+  script:
+    - echo "WIP"
+    - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
