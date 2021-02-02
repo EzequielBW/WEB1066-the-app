@@ -3,9 +3,10 @@ jdk: oraclejdk8
 dist: trusty
 before_install:
  - chmod +x gradlew
-script:
-  ./gradlew test
-  ./gradlew test jacocoTestCoverageVerification
+
+before_script:
+ - gradlew test
+ - gradlew test jacocoTestCoverageVerification
 
 after_success:
  - ./gradlew jacocoTestReport
