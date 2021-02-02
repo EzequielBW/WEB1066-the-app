@@ -57,10 +57,12 @@ jobs:
     script: "./gradlew -p ./monolithic/repository/user check"
     jdk: oraclejdk9
 
+after_script:
+  - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
+
 deploy:
   provider: script
   script:
     - echo "WIP"
-    - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
   on:
     all_branches: true
