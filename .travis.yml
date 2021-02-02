@@ -1,12 +1,14 @@
 language: java
 jdk: oraclejdk8
 dist: trusty
+env:
+  - COVERAGE=0.25
 before_install:
  - chmod +x gradlew
 
 before_script:
  - ./gradlew test
- - COVERAGE=0.5 ./gradlew test jacocoTestCoverageVerification
+ - ./gradlew test jacocoTestCoverageVerification
 
 after_success:
  - ./gradlew jacocoTestReport
