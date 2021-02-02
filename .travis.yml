@@ -13,13 +13,13 @@ jobs:
      script: ./gradlew -p ./monolithic/service/cart check
    - env: COVERAGE=0.5
      script: ./gradlew -p ./monolithic/service/user check
-   - env: COVERAGE=0.5
+   - env: COVERAGE=0.2
      script: ./gradlew -p ./monolithic/repository/order check
    - env: COVERAGE=0.5
      script: ./gradlew -p ./monolithic/repository/cart check
    - env: COVERAGE=0.5
      script: ./gradlew -p ./monolithic/repository/product check
-   - env: COVERAGE=0.5
+   - env: COVERAGE=0.2
      script: ./gradlew -p ./monolithic/repository/user check
 deploy:
   provider: script
