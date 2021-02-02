@@ -5,8 +5,8 @@ before_install:
  - chmod +x gradlew
 
 before_script:
- - gradlew test
- - gradlew test jacocoTestCoverageVerification
+ - ./gradlew test
+ - ./gradlew test jacocoTestCoverageVerification
 
 after_success:
  - ./gradlew jacocoTestReport
