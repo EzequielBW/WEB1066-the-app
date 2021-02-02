@@ -27,13 +27,12 @@ before_script:
 script:
 - COVERAGE=$COVERAGE ./gradlew -p ./monolithic/$FEATURE check
 
-after_script:
-  - bash -c "echo \"${DOCKER_PASSWORD}\" | docker login --username \"${DOCKER_LOGIN}\" --password-stdin"
+before_deploy:
+- ./gradlew -p ./monolithic/ui packageToContainer
 
 deploy:
   provider: script
-  script:
-    - echo "WIP"
+  script: chmod +x ./script/deploy.sh && ./script/deploy.sh
   on:
     branch: master
     condition: $FEATURE = ui
