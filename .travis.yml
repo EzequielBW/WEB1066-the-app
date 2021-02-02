@@ -6,7 +6,7 @@ before_install:
 
 before_script:
  - ./gradlew test
- - COVERAGE=0.35 ./gradlew test jacocoTestCoverageVerification
+ - COVERAGE=0.3 ./gradlew test jacocoTestCoverageVerification
 
 after_success:
  - ./gradlew jacocoTestReport
